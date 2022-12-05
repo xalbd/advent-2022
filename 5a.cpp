@@ -41,16 +41,9 @@ int main() {
         ci = stoi(count);
         si = stoi(start);
         ei = stoi(end);
-        deque<char> temp;
-
         for (int i = 0; i < ci; i++) {
-            temp.push_back(boxes[si].front());
+            boxes[ei].push_front(boxes[si].front());
             boxes[si].pop_front();
-        }
-
-        for (int i = 0; i < ci; i++) {
-            boxes[ei].push_front(temp.back());
-            temp.pop_back();
         }
     }
 
