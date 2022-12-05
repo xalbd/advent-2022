@@ -4,9 +4,9 @@ This repository contains my solutions to Advent of Code 2022. Input is either pa
 | Day | Part 1 | Part 2 | Notes |
 | --- | --- | --- | --- |
 | 1 | ✅ | ✅ | Solution for both problems in same file |
-| 2 | 🔴 | ✅ | None |
-| 3 | ⚪ | ⚪ | N/A |
-| 4 | ⚪ | ⚪ | N/A |
+| 2 | ✅ | ✅ | Needs optimization |
+| 3 | ✅ | ✅ | Needs optimization |
+| 4 | ✅ | ✅ | Needs optimization |
 | 5 | ⚪ | ⚪ | N/A |
 | 6 | ⚪ | ⚪ | N/A |
 | 7 | ⚪ | ⚪ | N/A |
