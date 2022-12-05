@@ -7,7 +7,7 @@ This repository contains my solutions to Advent of Code 2022. Input is either pa
 | 2 | ✅ | ✅ | Needs optimization |
 | 3 | ✅ | ✅ | Needs optimization |
 | 4 | ✅ | ✅ | Needs optimization |
-| 5 | ⚪ | ⚪ | N/A |
+| 5 | ✅ | ✅ | Needs optimization |
 | 6 | ⚪ | ⚪ | N/A |
 | 7 | ⚪ | ⚪ | N/A |
 | 8 | ⚪ | ⚪ | N/A |
