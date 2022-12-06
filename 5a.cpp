@@ -3,22 +3,14 @@
 #include <queue>
 #include <stack>
 #include <string>
+
+#include "utility.hpp"
 using namespace std;
-
-bool getNextSection(string& s, string delimiter, string& output) {
-    // Utility function to grab next section of a string using a delimiter
-
-    if (s.length() == 0) return false;
-    output = s.substr(0, s.find(delimiter));
-    s.erase(0, output.length() + delimiter.length());
-    // cout << output << endl;
-    return true;
-}
 
 int main() {
     deque<char> boxes[10];
-    string s, count, start, end, dummy;
-    int ci, si, ei;
+    string s;
+    int count, start, end;
     while (getline(cin, s)) {
         if (s == "") break;
         for (int i = 1; i <= 9; i++) {
@@ -32,23 +24,15 @@ int main() {
 
     while (getline(cin, s)) {
         if (s == "") break;
-        getNextSection(s, " ", dummy);
-        getNextSection(s, " ", count);
-        getNextSection(s, " ", dummy);
-        getNextSection(s, " ", start);
-        getNextSection(s, " ", dummy);
-        getNextSection(s, " ", end);
-        ci = stoi(count);
-        si = stoi(start);
-        ei = stoi(end);
-        for (int i = 0; i < ci; i++) {
-            boxes[ei].push_front(boxes[si].front());
-            boxes[si].pop_front();
+        getNext(s, count);
+        getNext(s, start);
+        getNext(s, end);
+        for (int i = 0; i < count; i++) {
+            boxes[end].push_front(boxes[start].front());
+            boxes[start].pop_front();
         }
     }
 
-    for (int i = 1; i <= 9; i++) {
-        cout << boxes[i].front();
-    }
+    for (int i = 1; i <= 9; i++) cout << boxes[i].front();
     cout << endl;
 }
