@@ -6,8 +6,8 @@ This repository contains my solutions to Advent of Code 2022. Input is either pa
 | 1 | ✅ | ✅ |  |
 | 2 | ✅ | ✅ | Needs optimization |
 | 3 | ✅ | ✅ | Needs optimization |
-| 4 | ✅ | ✅ | Needs optimization |
-| 5 | ✅ | ✅ |  |
+| 4 | ✅ | ✅ |  |
+| 5 | ✅ | ✅ | Input needs to be fixed |
 | 6 | ✅ | ✅ |  |
 | 7 | ⚪ | ⚪ |  |
 | 8 | ⚪ | ⚪ |  |

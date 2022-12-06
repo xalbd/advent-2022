@@ -1,31 +1,20 @@
 #include <iostream>
 #include <queue>
 #include <string>
+
+#include "utility.hpp"
 using namespace std;
 
 int main() {
-    int pos = 0;
-    string s, current;
-    string delimiter = "-";
-    int values[4];
-    int output = 0;
+    string s;
+    int values[4], output = 0;
     while (getline(cin, s)) {
         if (s == "") break;
-        delimiter = "-";
-        int index = 0;
-        while (pos = s.find(delimiter)) {
-            current = s.substr(0, pos);
-            // cout << current << endl;
-            values[index] = stoi(current);
-            index++;
-            s.erase(0, pos + delimiter.length());
-            if (delimiter == "-")
-                delimiter = ",";
-            else
-                delimiter = "-";
-            if (pos == string::npos) break;
+        for (int i = 0; i < 4; i++) {
+            getNext(s, values[i]);
         }
         if ((values[0] <= values[2] && values[1] >= values[3]) || (values[0] >= values[2] && values[1] <= values[3])) output++;
     }
-    cout << output;
+
+    cout << output << endl;
 }
