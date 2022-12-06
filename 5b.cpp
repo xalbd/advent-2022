@@ -13,14 +13,13 @@ int main() {
     int count, start, end;
     while (getline(cin, s)) {
         if (s == "") break;
+        if (s.find("1") != string::npos) continue;
         for (int i = 1; i <= 9; i++) {
             if (s.at(1 + (i - 1) * 4) != ' ') {
                 boxes[i].push_back(s.at(1 + (i - 1) * 4));
             }
         }
     }
-
-    cout << "input received" << endl;
 
     while (getline(cin, s)) {
         if (s == "") break;
