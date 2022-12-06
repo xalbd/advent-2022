@@ -1,5 +1,5 @@
 # 🎄 Advent of Code 2022
-This repository contains my solutions to Advent of Code 2022. Input is either pasted into the command line or grabbed from an input text file.
+This repository contains my solutions to Advent of Code 2022. Input is either pasted into the command line or grabbed from an input text file. Note: these are not authentic solutions- I clean up and usually end up rewriting bits of every program.
 
 | Day | Part 1 | Part 2 | Notes |
 | --- | --- | --- | --- |
