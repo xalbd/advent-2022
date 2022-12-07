@@ -9,7 +9,7 @@ This repository contains my solutions to Advent of Code 2022. Input is either pa
 | 4 | ✅ | ✅ |  |
 | 5 | ✅ | ✅ |  |
 | 6 | ✅ | ✅ |  |
-| 7 | ⚪ | ⚪ |  |
+| 7 | ✅ | ✅ | Needs optimization |
 | 8 | ⚪ | ⚪ |  |
 | 9 | ⚪ | ⚪ |  |
 | 10 | ⚪ | ⚪ |  |

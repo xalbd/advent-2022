@@ -3,3 +3,4 @@
 !*.cpp
 !*.md
 !*.hpp
+!*.clang-format
