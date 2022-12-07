@@ -9,8 +9,7 @@
 using namespace std;
 
 struct Node {
-    Node(Node* p, string s);
-    Node(Node* p, string s, int size);
+    Node(Node* p, string n, int s, bool d);
     void addSize(int s);
     int size;
     string name;
@@ -19,19 +18,12 @@ struct Node {
     bool isDirectory;
 };
 
-Node::Node(Node* p, string s) {
+Node::Node(Node* p, string n, int s, bool d) {
     size = 0;
-    name = s;
+    name = n;
     parent = p;
-    isDirectory = true;
-}
-
-Node::Node(Node* p, string s, int si) {
-    size = 0;
-    name = s;
-    parent = p;
-    addSize(si);
-    isDirectory = false;
+    addSize(s);
+    isDirectory = d;
 }
 
 void Node::addSize(int s) {
@@ -40,52 +32,47 @@ void Node::addSize(int s) {
     parent->addSize(s);
 }
 
-void calc(Node* cur, int& output, int needed) {
-    for (int i = 0; i < cur->children.size(); i++) {
-        Node* child = &cur->children[i];
-        if (child->size >= needed && child->isDirectory == true && child->size < output) {
-            output = child->size;
-        }
-        calc(child, output, needed);
+int calc(Node* cur) {
+    int out;
+    if (30000000 <= (70000000 - cur->size) && cur->isDirectory == true) {
+        out = cur->size;
     }
+    else {
+        out = 70000000;
+    }
+    for (auto& child : cur->children) out = min(out, calc(&child));
+    return out;
 }
 
 int main() {
-    Node tree = Node(nullptr, "");
+    Node tree = Node(nullptr, "/", 0, true);
     Node* current = &tree;
-    tree.children.push_back(Node(&tree, "/"));
-    string s, name;
+    string s;
     int size;
-    getline(cin, s);  // Created root already
+    getline(cin, s);
     while (getline(cin, s)) {
         if (s == "") break;
         if (s.find("$ cd ..") != string::npos) {
             current = current->parent;
-        } else if (s.find("$ cd") != string::npos) {
-            name = s.substr(5, string::npos);
-            for (int i = 0; i < current->children.size(); i++) {
-                Node* child = &current->children[i];
-                if (child->name == name) {
-                    current = child;
+        }
+        else if (s.find("$ cd") != string::npos) {
+            for (auto& child : current->children) {
+                if (child.name == s.substr(5, string::npos)) {
+                    current = &child;
                     break;
                 }
             }
-        } else if (s.find("$ ls") != string::npos) {
+        }
+        else if (s.find("$ ls") != string::npos) {
             continue;
-        } else {
-            if (s.find("dir ") != string::npos) {
-                name = s.substr(4, string::npos);
-                current->children.push_back(Node(current, name));
-            } else {
-                getNext(s, size);
-                getNext(s, name);
-                current->children.push_back(Node(current, name, size));
-            }
+        }
+        else if (s.find("dir ") != string::npos) {
+            current->children.push_back(Node(current, s.substr(4, string::npos), 0, true));
+        }
+        else {
+            current->children.push_back(Node(current, parse(s, " ")[1], stoi(parse(s, " ")[0]), false));
         }
     }
 
-    int needed = 30000000 - (70000000 - tree.size), output = 70000000;
-    cout << needed << endl;
-    calc(&tree, output, needed);
-    cout << output << endl;
+    cout << calc(&tree) << endl;
 }

@@ -1,5 +1,5 @@
 #include <string>
-using namespace std;
+#include <vector>
 
 // Gets next int from an input string and deletes the part of string up to and including the int
 bool getNext(string& s, int& output) {
@@ -29,4 +29,14 @@ bool getNext(string& s, string& output) {
     output = s.substr(start, (end != string::npos) ? (end - start) : end);
     s.erase(0, end);
     return true;
+}
+
+vector<string> parse(string s, string delim) {
+    vector<string> output;
+    while (s.length() > 0) {
+        int loc = s.find_first_of(delim);
+        output.push_back(s.substr(0, loc));
+        s.erase(0, (loc != string::npos) ? loc + 1 : string::npos);
+    }
+    return output;
 }
