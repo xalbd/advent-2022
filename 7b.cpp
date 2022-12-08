@@ -1,4 +1,5 @@
 #include <deque>
+#include <fstream>
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -32,32 +33,32 @@ void Node::addSize(int s) {
     parent->addSize(s);
 }
 
-int calc(Node* cur) {
+int calc(Node* cur, int total) {
     int out;
-    if (30000000 <= (70000000 - cur->size) && cur->isDirectory == true) {
+    if (30000000 <= (70000000 - total + cur->size) && cur->isDirectory == true)
         out = cur->size;
-    }
-    else {
+    else
         out = 70000000;
-    }
-    for (auto& child : cur->children) out = min(out, calc(&child));
+    for (auto& child : cur->children) out = min(out, calc(&child, total));
     return out;
 }
 
-int main() {
+void solve(string filename) {
+    ifstream file(filename);
     Node tree = Node(nullptr, "/", 0, true);
     Node* current = &tree;
     string s;
-    int size;
-    getline(cin, s);
-    while (getline(cin, s)) {
+    vector<string> parsed;
+    getline(file, s);
+    while (getline(file, s)) {
         if (s == "") break;
+        parsed = parse(s, " ");
         if (s.find("$ cd ..") != string::npos) {
             current = current->parent;
         }
         else if (s.find("$ cd") != string::npos) {
             for (auto& child : current->children) {
-                if (child.name == s.substr(5, string::npos)) {
+                if (child.name == parsed[2]) {
                     current = &child;
                     break;
                 }
@@ -67,12 +68,17 @@ int main() {
             continue;
         }
         else if (s.find("dir ") != string::npos) {
-            current->children.push_back(Node(current, s.substr(4, string::npos), 0, true));
+            current->children.push_back(Node(current, parsed[1], 0, true));
         }
         else {
-            current->children.push_back(Node(current, parse(s, " ")[1], stoi(parse(s, " ")[0]), false));
+            current->children.push_back(Node(current, parsed[1], stoi(parsed[0]), false));
         }
     }
+    cout << calc(&tree, tree.size) << endl;
+    file.close();
+}
 
-    cout << calc(&tree) << endl;
+int main() {
+    solve("7example.txt");
+    solve("7input.txt");
 }

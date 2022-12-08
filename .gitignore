@@ -4,3 +4,4 @@
 !*.md
 !*.hpp
 !*.clang-format
+!*.txt

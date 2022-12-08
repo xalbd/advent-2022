@@ -1,4 +1,5 @@
 #include <deque>
+#include <fstream>
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -39,20 +40,22 @@ int calc(Node* cur) {
     return out;
 }
 
-int main() {
+void solve(string filename) {
+    ifstream file(filename);
     Node tree = Node(nullptr, "/", 0, true);
     Node* current = &tree;
     string s;
-    int size;
-    getline(cin, s);
-    while (getline(cin, s)) {
+    vector<string> parsed;
+    getline(file, s);
+    while (getline(file, s)) {
         if (s == "") break;
+        parsed = parse(s, " ");
         if (s.find("$ cd ..") != string::npos) {
             current = current->parent;
         }
         else if (s.find("$ cd") != string::npos) {
             for (auto& child : current->children) {
-                if (child.name == s.substr(5, string::npos)) {
+                if (child.name == parsed[2]) {
                     current = &child;
                     break;
                 }
@@ -62,12 +65,17 @@ int main() {
             continue;
         }
         else if (s.find("dir ") != string::npos) {
-            current->children.push_back(Node(current, s.substr(4, string::npos), 0, true));
+            current->children.push_back(Node(current, parsed[1], 0, true));
         }
         else {
-            current->children.push_back(Node(current, parse(s, " ")[1], stoi(parse(s, " ")[0]), false));
+            current->children.push_back(Node(current, parsed[1], stoi(parsed[0]), false));
         }
     }
-
     cout << calc(&tree) << endl;
+    file.close();
+}
+
+int main() {
+    solve("7example.txt");
+    solve("7input.txt");
 }

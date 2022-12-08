@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+using namespace std;
 
 // Gets next int from an input string and deletes the part of string up to and including the int
 bool getNext(string& s, int& output) {
