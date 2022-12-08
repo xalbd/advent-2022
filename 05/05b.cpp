@@ -4,7 +4,7 @@
 #include <stack>
 #include <string>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 int main() {

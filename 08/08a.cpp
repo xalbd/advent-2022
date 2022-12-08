@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 void solve(string filename) {
@@ -68,6 +68,6 @@ void solve(string filename) {
 }
 
 int main() {
-    solve("8example.txt");
-    solve("8input.txt");
+    solve("08example.txt");
+    solve("08input.txt");
 }

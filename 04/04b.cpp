@@ -2,7 +2,7 @@
 #include <queue>
 #include <string>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 int main() {
@@ -13,7 +13,7 @@ int main() {
         for (int i = 0; i < 4; i++) {
             getNext(s, values[i]);
         }
-        if ((values[0] <= values[2] && values[1] >= values[3]) || (values[0] >= values[2] && values[1] <= values[3])) output++;
+        if (!(values[1] < values[2] || values[0] > values[3])) output++;
     }
 
     cout << output << endl;

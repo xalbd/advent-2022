@@ -5,7 +5,7 @@
 #include <stack>
 #include <string>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 void solve(string filename) {
@@ -40,6 +40,6 @@ void solve(string filename) {
 }
 
 int main() {
-    solve("5example.txt");
-    solve("5input.txt");
+    solve("05example.txt");
+    solve("05input.txt");
 }

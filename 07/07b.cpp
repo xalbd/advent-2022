@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 struct Node {
@@ -33,10 +33,13 @@ void Node::addSize(int s) {
     parent->addSize(s);
 }
 
-int calc(Node* cur) {
-    int out = 0;
-    if (cur->size <= 100000 && cur->isDirectory == true) out += cur->size;
-    for (auto& child : cur->children) out += calc(&child);
+int calc(Node* cur, int total) {
+    int out;
+    if (30000000 <= (70000000 - total + cur->size) && cur->isDirectory == true)
+        out = cur->size;
+    else
+        out = 70000000;
+    for (auto& child : cur->children) out = min(out, calc(&child, total));
     return out;
 }
 
@@ -71,11 +74,11 @@ void solve(string filename) {
             current->children.push_back(Node(current, parsed[1], stoi(parsed[0]), false));
         }
     }
-    cout << calc(&tree) << endl;
+    cout << calc(&tree, tree.size) << endl;
     file.close();
 }
 
 int main() {
-    solve("7example.txt");
-    solve("7input.txt");
+    solve("07example.txt");
+    solve("07input.txt");
 }

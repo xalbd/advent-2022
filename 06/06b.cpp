@@ -3,7 +3,7 @@
 #include <queue>
 #include <string>
 
-#include "utility.hpp"
+#include "../utility.hpp"
 using namespace std;
 
 void solve(string filename) {
@@ -12,8 +12,8 @@ void solve(string filename) {
     file >> s;
     for (int i = 0; i < s.length(); i++) {
         bool valid = true;
-        for (int j = 0; j < 4; j++) {
-            for (int k = j + 1; k < 4; k++) {
+        for (int j = 0; j < 14; j++) {
+            for (int k = j + 1; k < 14; k++) {
                 if (s[i + j] == s[i + k]) {
                     valid = false;
                     break;
@@ -21,7 +21,7 @@ void solve(string filename) {
             }
         }
         if (valid) {
-            cout << i + 4 << endl;
+            cout << i + 14 << endl;
             break;
         }
     }
@@ -29,6 +29,6 @@ void solve(string filename) {
 }
 
 int main() {
-    solve("6example.txt");
-    solve("6input.txt");
+    solve("06example.txt");
+    solve("06input.txt");
 }
