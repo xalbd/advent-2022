@@ -1,7 +1,2 @@
-*
 *.vscode
-!*.cpp
-!*.md
-!*.hpp
-!*.clang-format
-!*.txt
+.DS_Store
