@@ -13,7 +13,7 @@ void solve(string filename) {
     ifstream file(filename);
     string s;
     vector<string> parsed;
-    while (getline(cin, s)) {
+    while (getline(file, s)) {
         if (s == "") break;
         parsed = parse(s, " ");
     }
