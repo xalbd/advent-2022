@@ -7,7 +7,7 @@ This repository contains my solutions to Advent of Code 2022. Input is grabbed f
 | 2 | ✅ | ✅ | Pending rewrite |
 | 3 | ✅ | ✅ | Pending rewrite |
 | 4 | ✅ | ✅ | Pending rewrite |
-| 5 | ✅ | ✅ | Rewrite in progress |
+| 5 | ✅ | ✅ |  |
 | 6 | ✅ | ✅ |  |
 | 7 | ✅ | ✅ |  |
 | 8 | ✅ | ✅ | Needs rewrite |

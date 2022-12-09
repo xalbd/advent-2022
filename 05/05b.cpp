@@ -1,4 +1,5 @@
 #include <deque>
+#include <fstream>
 #include <iostream>
 #include <queue>
 #include <stack>
@@ -7,38 +8,43 @@
 #include "../utility.hpp"
 using namespace std;
 
-int main() {
+void solve(string filename) {
+    ifstream file(filename);
     deque<char> boxes[10];
     string s;
-    int count, start, end;
-    while (getline(cin, s)) {
-        if (s == "") break;
+    vector<string> parsed;
+    int total;
+    while (getline(file, s)) {
+        if (s.length() == 0) break;
         if (s.find("1") != string::npos) continue;
-        for (int i = 1; i <= 9; i++) {
-            if (s.at(1 + (i - 1) * 4) != ' ') {
-                boxes[i].push_back(s.at(1 + (i - 1) * 4));
+        for (total = 0; total * 4 + 1 < s.length(); total++) {
+            if (s.at(total * 4 + 1) != ' ') {
+                boxes[total].push_back(s.at(total * 4 + 1));
             }
         }
     }
 
-    while (getline(cin, s)) {
+    while (getline(file, s)) {
         if (s == "") break;
-        getNext(s, count);
-        getNext(s, start);
-        getNext(s, end);
+        parsed = parse(s, " ");
         deque<char> temp;
-
-        for (int i = 0; i < count; i++) {
-            temp.push_back(boxes[start].front());
-            boxes[start].pop_front();
+        for (int i = 0; i < stoi(parsed[1]); i++) {
+            temp.push_back(boxes[stoi(parsed[3]) - 1].front());
+            boxes[stoi(parsed[3]) - 1].pop_front();
         }
 
-        for (int i = 0; i < count; i++) {
-            boxes[end].push_front(temp.back());
+        for (int i = 0; i < stoi(parsed[1]); i++) {
+            boxes[stoi(parsed[5]) - 1].push_front(temp.back());
             temp.pop_back();
         }
     }
 
-    for (int i = 1; i <= 9; i++) cout << boxes[i].front();
+    for (int i = 0; i < total; i++) cout << boxes[i].front();
     cout << endl;
+    file.close();
+}
+
+int main() {
+    solve("05example.txt");
+    solve("05input.txt");
 }
