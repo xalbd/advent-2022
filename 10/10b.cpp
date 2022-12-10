@@ -9,52 +9,47 @@
 #include "../utility.hpp"
 using namespace std;
 
+void run(int &cycle, int x, char crt[6][40]) {  // x: 0-39, cycle: 1-40
+    cycle--;
+    if (abs((cycle % 40) - x) <= 1 && cycle < 240)
+        crt[cycle / 40][cycle % 40] = '#';
+    cycle += 2;
+}
+
 void solve(string filename) {
     ifstream file(filename);
     string s;
     vector<string> parsed;
-    int cycle = 1, x = 1, output = 0, checked = 0;
-    char crt[41][6];
-    for (int i = 0; i < 40; i++) {
-        for (int j = 0; j < 6; j++) {
-            crt[i][j] = '.';
+    int cycle = 1, x = 1;
+    char crt[6][40];
+    for (auto &a : crt) {
+        for (auto &b : a) {
+            b = ' ';
         }
     }
     while (getline(file, s)) {
         if (s == "") break;
         parsed = parse(s, " ");
         if (s == "noop") {
-            if (cycle - 1 < 240) {
-                if (abs(((cycle - 1) % 40) - (x)) <= 1) crt[(cycle - 1) % 40][(cycle - 1) / 40] = '#';
-            }
-            cycle++;
-            continue;
+            run(cycle, x, crt);
         }
         else {
-            if (cycle - 1 < 240) {
-                if (abs(((cycle - 1) % 40) - (x)) <= 1) crt[(cycle - 1) % 40][(cycle - 1) / 40] = '#';
-            }
-            cycle++;
-
-            if (cycle - 1 < 240) {
-                if (abs(((cycle - 1) % 40) - (x)) <= 1) crt[(cycle - 1) % 40][(cycle - 1) / 40] = '#';
-            }
-            cycle++;
+            run(cycle, x, crt);
+            run(cycle, x, crt);
             x += stoi(parsed[1]);
         }
     }
-    for (int j = 0; j < 6; j++) {
-        for (int i = 0; i < 41; i++) {
-            cout << crt[i][j];
+    for (auto &a : crt) {
+        for (auto &b : a) {
+            cout << b;
         }
         cout << endl;
     }
-
+    cout << endl;
     file.close();
 }
 
 int main() {
     solve("10example.txt");
-    cout << endl;
     solve("10input.txt");
 }

@@ -9,34 +9,28 @@
 #include "../utility.hpp"
 using namespace std;
 
+int run(int &cycle, int x) {
+    if ((cycle - 20) % 40 == 0 && cycle <= 220) {
+        return (cycle++) * x;
+    }
+    cycle++;
+    return 0;
+}
+
 void solve(string filename) {
     ifstream file(filename);
     string s;
     vector<string> parsed;
-    int cycle = 1, x = 1, output = 0, checked = 0;
+    int cycle = 1, x = 1, output = 0;
     while (getline(file, s)) {
         if (s == "") break;
         parsed = parse(s, " ");
         if (s == "noop") {
-                        if ((cycle - 20) % 40 == 0 && checked < 6) {
-                output += cycle * x;
-                checked++;
-            }
-            cycle++;
-            continue;
+            output += run(cycle, x);
         }
         else {
-            if ((cycle - 20) % 40 == 0 && checked < 6) {
-                output += cycle * x;
-                checked++;
-            }
-            cycle++;
-
-            if ((cycle - 20) % 40 == 0 && checked < 6) {
-                output += cycle * x;
-                checked++;
-            }
-            cycle++;
+            output += run(cycle, x);
+            output += run(cycle, x);
             x += stoi(parsed[1]);
         }
     }
