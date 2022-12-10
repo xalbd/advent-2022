@@ -3,27 +3,41 @@
 #include <string>
 using namespace std;
 
-int main() {
-    priority_queue<int> cal;
-    string input;
-    int cur = 0, out = 0;
+#include <fstream>
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
 
-    while (getline(cin, input)) {
-        if (input != "" && input != "e") {
-            cur += stoi(input);
-        } else if (input == "e") {
-            break;
-        } else {
+void solve(string filename) {
+    ifstream file(filename);
+    string s;
+    priority_queue<int> cal;
+    int cur = 0, output = 0;
+
+    while (getline(file, s)) {
+        if (s == "") {
             cal.push(cur);
             cur = 0;
+        }
+        else if (file.eof()) {
+            cal.push(cur + stoi(s));
+        }
+        else {
+            cur += stoi(s);
         }
     }
 
     for (int i = 0; i < 3; i++) {
-        out += cal.top();
-        cout << cal.top() << endl;
+        output += cal.top();
         cal.pop();
     }
+    cout << output << endl;
 
-    cout << out << endl;
+    file.close();
+}
+
+int main() {
+    solve("01example.txt");
+    solve("01input.txt");
 }

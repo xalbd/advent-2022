@@ -34,13 +34,15 @@ void Node::addSize(int s) {
 }
 
 int calc(Node* cur, int total) {
-    int out;
-    if (30000000 <= (70000000 - total + cur->size) && cur->isDirectory == true)
-        out = cur->size;
-    else
-        out = 70000000;
-    for (auto& child : cur->children) out = min(out, calc(&child, total));
-    return out;
+    int output;
+    if (30000000 <= (70000000 - total + cur->size) && cur->isDirectory == true) {
+        output = cur->size;
+    }
+    else {
+        output = 70000000;
+    }
+    for (auto& child : cur->children) output = min(output, calc(&child, total));
+    return output;
 }
 
 void solve(string filename) {
@@ -49,6 +51,7 @@ void solve(string filename) {
     Node* current = &tree;
     string s;
     vector<string> parsed;
+
     getline(file, s);
     while (getline(file, s)) {
         if (s == "") break;
@@ -75,6 +78,7 @@ void solve(string filename) {
         }
     }
     cout << calc(&tree, tree.size) << endl;
+
     file.close();
 }
 

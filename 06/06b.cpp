@@ -10,6 +10,7 @@ void solve(string filename) {
     ifstream file(filename);
     string s;
     file >> s;
+
     for (int i = 0; i < s.length(); i++) {
         bool valid = true;
         for (int j = 0; j < 14; j++) {
@@ -25,6 +26,7 @@ void solve(string filename) {
             break;
         }
     }
+
     file.close();
 }
 

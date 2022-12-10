@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <queue>
 #include <string>
@@ -5,16 +6,22 @@
 #include "../utility.hpp"
 using namespace std;
 
-int main() {
+void solve(string filename) {
+    ifstream file(filename);
     string s;
-    int values[4], output = 0;
-    while (getline(cin, s)) {
-        if (s == "") break;
-        for (int i = 0; i < 4; i++) {
-            getNext(s, values[i]);
-        }
-        if (!(values[1] < values[2] || values[0] > values[3])) output++;
-    }
+    vector<string> parsed;
+    int output = 0;
 
+    while (getline(file, s)) {
+        parsed = parse(s, "-,");
+        if (!(stoi(parsed[1]) < stoi(parsed[2]) || stoi(parsed[0]) > stoi(parsed[3]))) output++;
+    }
     cout << output << endl;
+
+    file.close();
+}
+
+int main() {
+    solve("04example.txt");
+    solve("04input.txt");
 }

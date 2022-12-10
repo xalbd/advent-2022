@@ -1,23 +1,33 @@
+#include <fstream>
 #include <iostream>
 #include <queue>
 #include <string>
 using namespace std;
 
-int main() {
+void solve(string filename) {
+    ifstream file(filename);
+    string s;
     priority_queue<int> cal;
-    string input;
-    int cur = 0, out = 0;
+    int cur = 0;
 
-    while (getline(cin, input)) {
-        if (input != "" && input != "e") {
-            cur += stoi(input);
-        } else if (input == "e") {
-            break;
-        } else {
+    while (getline(file, s)) {
+        if (s == "") {
             cal.push(cur);
             cur = 0;
         }
+        else if (file.eof()) {
+            cal.push(cur + stoi(s));
+        }
+        else {
+            cur += stoi(s);
+        }
     }
-
     cout << cal.top() << endl;
+
+    file.close();
+}
+
+int main() {
+    solve("01example.txt");
+    solve("01input.txt");
 }

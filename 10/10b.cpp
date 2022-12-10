@@ -11,8 +11,9 @@ using namespace std;
 
 void run(int &cycle, int x, char crt[6][40]) {  // x: 0-39, cycle: 1-40
     cycle--;
-    if (abs((cycle % 40) - x) <= 1 && cycle < 240)
+    if (abs((cycle % 40) - x) <= 1 && cycle < 240) {
         crt[cycle / 40][cycle % 40] = '#';
+    }
     cycle += 2;
 }
 
@@ -22,11 +23,13 @@ void solve(string filename) {
     vector<string> parsed;
     int cycle = 1, x = 1;
     char crt[6][40];
+
     for (auto &a : crt) {
         for (auto &b : a) {
             b = ' ';
         }
     }
+
     while (getline(file, s)) {
         if (s == "") break;
         parsed = parse(s, " ");
@@ -39,6 +42,7 @@ void solve(string filename) {
             x += stoi(parsed[1]);
         }
     }
+
     for (auto &a : crt) {
         for (auto &b : a) {
             cout << b;
@@ -46,6 +50,7 @@ void solve(string filename) {
         cout << endl;
     }
     cout << endl;
+
     file.close();
 }
 

@@ -14,8 +14,9 @@ void solve(string filename) {
     string s;
     vector<string> parsed;
     int total;
+
     while (getline(file, s)) {
-        if (s.length() == 0) break;
+        if (s == "") break;
         if (s.find("1") != string::npos) continue;
         for (total = 0; total * 4 + 1 < s.length(); total++) {
             if (s.at(total * 4 + 1) != ' ') {
@@ -25,7 +26,6 @@ void solve(string filename) {
     }
 
     while (getline(file, s)) {
-        if (s == "") break;
         parsed = parse(s, " ");
         deque<char> temp;
         for (int i = 0; i < stoi(parsed[1]); i++) {
@@ -41,6 +41,7 @@ void solve(string filename) {
 
     for (int i = 0; i < total; i++) cout << boxes[i].front();
     cout << endl;
+
     file.close();
 }
 

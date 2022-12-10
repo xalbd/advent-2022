@@ -3,10 +3,10 @@ This repository contains my solutions to Advent of Code 2022. Input is grabbed f
 
 | Day | Part 1 | Part 2 | Notes |
 | --- | --- | --- | --- |
-| 1 | ✅ | ✅ | Pending rewrite |
+| 1 | ✅ | ✅ |  |
 | 2 | ✅ | ✅ | Pending rewrite |
 | 3 | ✅ | ✅ | Pending rewrite |
-| 4 | ✅ | ✅ | Pending rewrite |
+| 4 | ✅ | ✅ |  |
 | 5 | ✅ | ✅ |  |
 | 6 | ✅ | ✅ |  |
 | 7 | ✅ | ✅ |  |

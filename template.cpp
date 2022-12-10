@@ -13,10 +13,11 @@ void solve(string filename) {
     ifstream file(filename);
     string s;
     vector<string> parsed;
+
     while (getline(file, s)) {
-        if (s == "") break;
         parsed = parse(s, " ");
     }
+
     file.close();
 }
 

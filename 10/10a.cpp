@@ -22,8 +22,8 @@ void solve(string filename) {
     string s;
     vector<string> parsed;
     int cycle = 1, x = 1, output = 0;
+
     while (getline(file, s)) {
-        if (s == "") break;
         parsed = parse(s, " ");
         if (s == "noop") {
             output += run(cycle, x);
@@ -35,6 +35,7 @@ void solve(string filename) {
         }
     }
     cout << output << endl;
+
     file.close();
 }
 

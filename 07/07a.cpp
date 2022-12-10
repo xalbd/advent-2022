@@ -34,10 +34,10 @@ void Node::addSize(int s) {
 }
 
 int calc(Node* cur) {
-    int out = 0;
-    if (cur->size <= 100000 && cur->isDirectory == true) out += cur->size;
-    for (auto& child : cur->children) out += calc(&child);
-    return out;
+    int output = 0;
+    if (cur->size <= 100000 && cur->isDirectory == true) output += cur->size;
+    for (auto& child : cur->children) output += calc(&child);
+    return output;
 }
 
 void solve(string filename) {
@@ -46,6 +46,7 @@ void solve(string filename) {
     Node* current = &tree;
     string s;
     vector<string> parsed;
+
     getline(file, s);
     while (getline(file, s)) {
         if (s == "") break;
@@ -72,6 +73,7 @@ void solve(string filename) {
         }
     }
     cout << calc(&tree) << endl;
+
     file.close();
 }
 
