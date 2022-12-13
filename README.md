@@ -15,7 +15,7 @@ This repository contains my solutions to Advent of Code 2022. Input is grabbed f
 | 10 | ✅ | ✅ |  |
 | 11 | ✅ | ✅ | Needs rewrite |
 | 12 | ✅ | ✅ | Needs rewrite |
-| 13 | ⚪ | ⚪ |  |
+| 13 | ✅ | ✅ | Functional but in .py, needs rewrite |
 | 14 | ⚪ | ⚪ |  |
 | 15 | ⚪ | ⚪ |  | 
 | 16 | ⚪ | ⚪ |  |
