@@ -1,12 +1,8 @@
 from functools import cmp_to_key
 
-f = open("13input.txt", "r")
-count = 0
-output = 1
-
 
 def comp(list1, list2):
-    if isinstance(list1, int) and isinstance(list2, int):
+    if type(list1) == type(list2) == int:
         if list1 < list2:
             return -1
         elif list1 > list2:
@@ -14,9 +10,9 @@ def comp(list1, list2):
         else:
             return 0
 
-    elif isinstance(list1, list) and isinstance(list2, list):
+    elif type(list1) == type(list2) == list:
         for a in range(min(len(list1), len(list2))):
-            if comp(list1[a], list2[a]) != 3:
+            if comp(list1[a], list2[a]) != 0:
                 return comp(list1[a], list2[a])
         if len(list1) < len(list2):
             return -1
@@ -25,27 +21,27 @@ def comp(list1, list2):
         else:
             return 0
 
-    else:
-        if isinstance(list1, int):
-            return comp([list1], list2)
-        else:
-            return comp(list1, [list2])
+    elif type(list1) == list:
+        return comp(list1, [list2])
+    elif type(list2) == list:
+        return comp([list1], list2)
 
 
-inputs = [[[2]], [[6]]]
-while True:
-    line = f.readline()
-    if not line:
-        break
-    inputs.append(eval(line))
-    inputs.append(eval(f.readline()))
-    f.readline()
+def solve(filename):
+    f = open(filename, "r")
+    inputs = [[[2]], [[6]]]
 
-inputs = sorted(inputs, key=cmp_to_key(comp))
+    while True:
+        try:
+            inputs.append(eval(f.readline()))
+            inputs.append(eval(f.readline()))
+            f.readline()
+        except:
+            break
 
-for i in range(0, len(inputs)):
-    if inputs[i] == [[2]] or inputs[i] == [[6]]:
-        print(i)
-        output *= (i + 1)
+    inputs = sorted(inputs, key=cmp_to_key(comp))
+    print((inputs.index([[2]]) + 1) * (inputs.index([[6]]) + 1))
 
-print(output)
+
+solve("13example.txt")
+solve("13input.txt")
