@@ -1,39 +1,36 @@
+#include <fstream>
 #include <iostream>
 #include <queue>
+#include <set>
 #include <string>
 using namespace std;
 
-int main() {
-    string input;
+void solve(string filename) {
+    ifstream file(filename);
+    string x, y, z;
     int out = 0;
-    bool end = false;
-    while (end == false) {
-        int items[26 + 26 + 5][3] = {0};
-        int a = 0;
-        int b = 0;
-        while (getline(cin, input)) {
-            if (input == "") {
-                end = true;
-                break;
-            }
-            for (int a = 0; a < input.length(); a++) {
-                if (islower(input[a])) {
-                    items[input[a] - 'a' + 1][b]++;
-                } else {
-                    items[input[a] - 'A' + 26 + 1][b]++;
-                }
-            }
-            b++;
-            if (b == 3) break;
-        }
 
-        for (int i = 1; i < 26 + 26 + 5; i++) {
-            if (items[i][0] > 0 && items[i][1] > 0 && items[i][2] > 0) {
-                out += i;
+    while (getline(file, x)) {
+        getline(file, y);
+        getline(file, z);
+        for (auto a : x) {
+            if (y.find(a) != string::npos && z.find(a) != string::npos) {
+                if (a >= 'a') {
+                    out += a - 'a' + 1;
+                }
+                else {
+                    out += a - 'A' + 26 + 1;
+                }
                 break;
             }
         }
     }
-
     cout << out << endl;
+
+    file.close();
+}
+
+int main() {
+    solve("03example.txt");
+    solve("03input.txt");
 }

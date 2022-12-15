@@ -5,7 +5,7 @@ This repository contains my solutions to Advent of Code 2022. Input is grabbed f
 | --- | --- | --- | --- |
 | 1 | ✅ | ✅ |  |
 | 2 | ✅ | ✅ |  |
-| 3 | ✅ | ✅ | Pending rewrite |
+| 3 | ✅ | ✅ |  |
 | 4 | ✅ | ✅ |  |
 | 5 | ✅ | ✅ |  |
 | 6 | ✅ | ✅ |  |
