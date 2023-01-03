@@ -17,7 +17,7 @@ This repository contains my solutions to Advent of Code 2022. Input is grabbed f
 | 12 | ✅ | ✅ | Needs rewrite |
 | 13 | ✅ | ✅ |  |
 | 14 | ✅ | ✅ | Needs significant rewrite, part b took 10 minutes to run |
-| 15 | ⚪ | ⚪ |  | 
+| 15 | ✅ | ⚪ | Doesn't work, written on plane, went on vacation after | 
 | 16 | ⚪ | ⚪ |  |
 | 17 | ⚪ | ⚪ |  |
 | 18 | ⚪ | ⚪ |  |
